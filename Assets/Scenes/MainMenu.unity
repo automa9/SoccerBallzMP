@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 111.528145, g: 116.05496, b: 121.19905, a: 1}
+  m_IndirectSpecularColor: {r: 152.16728, g: 179.03609, b: 229.19827, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1649,14 +1649,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1740957337}
         m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
+        m_MethodName: ChangeScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Scoreboard
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &445113035
@@ -2789,14 +2789,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 891263665}
-  m_LocalRotation: {x: 0.21677603, y: -0.25221702, z: 0.05808495, w: 0.94128686}
+  m_LocalRotation: {x: 0.03889471, y: -0.23615533, z: 0.12159028, w: 0.96329314}
   m_LocalPosition: {x: 150.35138, y: -8.461546, z: -20.142015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 25.938, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 7.606, y: -26.71, z: 12.58}
 --- !u!1001 &899483439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4261,14 +4261,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1740957337}
         m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
+        m_MethodName: ChangeScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Game
+          m_StringArgument: TestRoom
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1755878152

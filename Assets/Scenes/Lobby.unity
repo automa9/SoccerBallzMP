@@ -5504,7 +5504,7 @@ MonoBehaviour:
   startButton: {fileID: 161795377}
   maxNumberOfPlayers: 2
   minNumberOfPlayers: 1
-  sceneMP: MultiGame
+  sceneMP: MultiLevel
 --- !u!1 &1798459867
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,10 +8,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
     public TextMeshProUGUI[] playerName;
 
-    public TMP_InputField roomName;
-    //public Text roomName;
-
-    public GameObject roomSettingPanel;
+    public GameObject room1SettingPanel;
+    public GameObject room2SettingPanel;
+    public GameObject room3SettingPanel;
     public GameObject waitingPanel;
 
     public Button startButton;
@@ -20,7 +19,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public int maxNumberOfPlayers = 2;
     public int minNumberOfPlayers = 1;
 
-    public string sceneMP;
+    //public string sceneMP;
+
+    private string level1RoomID = "Level1Room";
+    private string level2RoomID = "Level2Room";
+    private string level3RoomID = "Level3Room";
+
+    private string roomName = string.Empty;
 
     void Start()
     {
@@ -47,29 +52,57 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         }
     }
 
+    public void JoinRoom1()
+    {
+        roomName = level1RoomID;
+        JoinRoom();
+    }
+
+    public void JoinRoom2()
+    {
+        roomName = level2RoomID;
+        JoinRoom();
+    }
+
+    public void JoinRoom3()
+    {
+        roomName = level3RoomID;
+        JoinRoom();
+    }
+
     public void JoinRoom()
     {
-        if (!string.IsNullOrEmpty(roomName.text))
-        {
-            roomSettingPanel.SetActive(false);
-            waitingPanel.SetActive(true);
+        room1SettingPanel.SetActive(false);
+        room2SettingPanel.SetActive(false);
+        room3SettingPanel.SetActive(false);
+        waitingPanel.SetActive(true);
 
-            string namePlayer = PlayerPrefs.GetString("username");
-            PhotonNetwork.NickName = namePlayer;
-            PhotonNetwork.JoinOrCreateRoom(roomName.text, options, TypedLobby.Default);
-        }
+        string namePlayer = PlayerPrefs.GetString("username");
+        PhotonNetwork.NickName = namePlayer;
+        PhotonNetwork.JoinOrCreateRoom(roomName, options, TypedLobby.Default);
     }
 
     public void LoadScene()
     {
-        PhotonNetwork.LoadLevel(sceneMP);
+        // Load the scene based on the room ID
+        if (roomName == level1RoomID)
+        {
+            PhotonNetwork.LoadLevel("MultiLevel");
+        }
+        else if (roomName == level2RoomID)
+        {
+            PhotonNetwork.LoadLevel("Level2SceneName");
+        }
+        else if (roomName == level3RoomID)
+        {
+            PhotonNetwork.LoadLevel("Level3SceneName");
+        }
     }
 
     public override void OnConnectedToMaster() // callback function for when first connection is made
     {
         PhotonNetwork.JoinLobby(TypedLobby.Default);
         Debug.Log("Connected");
-
     }
 
     public override void OnJoinedRoom()
@@ -104,7 +137,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     }
 
     [PunRPC]
-    void Send_PlayersName(int index,string name)
+    void Send_PlayersName(int index, string name)
     {
         playerName[index].text = name;
     }

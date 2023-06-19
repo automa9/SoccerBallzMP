@@ -7,6 +7,7 @@ using Photon.Pun;
 public class ConnectServer : MonoBehaviourPunCallbacks
 {
     public string lobbySceneName;
+    public GameObject loadingPanel; //Loading Picture panel
     public GameObject loadingBar; // Reference to the loading bar or sprite
     private LoadingBarController loadingBarController;
 
@@ -36,7 +37,8 @@ public class ConnectServer : MonoBehaviourPunCallbacks
     }
 
     public override void OnJoinedLobby()
-    {
+    {   
+        loadingPanel.SetActive(true);
         loadingBarController.UpdateLoadingBar(1f); // Update the loading bar progress
         SceneManager.LoadScene(lobbySceneName);
     }

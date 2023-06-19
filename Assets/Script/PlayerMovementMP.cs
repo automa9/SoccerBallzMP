@@ -90,7 +90,7 @@ public class PlayerMovementMP : MonoBehaviour
         }
     }
 
-/*
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -110,8 +110,8 @@ public class PlayerMovementMP : MonoBehaviour
             stream.SendNext(_playerVelocity);
 
             // Serialize the animator parameters
-            stream.SendNext(animator.GetBool("Dribble"));
-            stream.SendNext(animator.GetBool("isJump"));
+            //stream.SendNext(animator.GetBool("Dribble"));
+            //stream.SendNext(animator.GetBool("isJump"));
         }
         else
         {
@@ -130,8 +130,8 @@ public class PlayerMovementMP : MonoBehaviour
             _playerVelocity = (Vector3)stream.ReceiveNext();
 
             // Deserialize the animator parameters
-            animator.SetBool("Dribble", (bool)stream.ReceiveNext());
-            animator.SetBool("isJump", (bool)stream.ReceiveNext());
+            //animator.SetBool("Dribble", (bool)stream.ReceiveNext());
+            //animator.SetBool("isJump", (bool)stream.ReceiveNext());
         }
-    }*/
+    }
 }

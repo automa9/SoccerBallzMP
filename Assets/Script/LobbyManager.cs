@@ -12,7 +12,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public GameObject room2SettingPanel;
     public GameObject room3SettingPanel;
     public GameObject waitingPanel;
+    public GameObject teamSelectionPanel;
 
+    public Button teamA;
+    public Button teamB;
     public Button startButton;
 
     RoomOptions options;
@@ -25,6 +28,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     private string level2RoomID = "Level2Room";
     private string level3RoomID = "Level3Room";
 
+    private string teamSelected;
     private string roomName = string.Empty;
 
     void Start()
@@ -52,7 +56,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         }
     }
 
-    public void JoinRoom1()
+/*    public void JoinRoom1()
     {
         roomName = level1RoomID;
         JoinRoom();
@@ -69,14 +73,46 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         roomName = level3RoomID;
         JoinRoom();
     }
-
-    public void JoinRoom()
+*/
+    public void JoinRoom(string room)
     {
         room1SettingPanel.SetActive(false);
         room2SettingPanel.SetActive(false);
         room3SettingPanel.SetActive(false);
-        waitingPanel.SetActive(true);
+        teamSelectionPanel.SetActive(true);
+        waitingPanel.SetActive(false);
 
+        roomName = room;
+    }
+
+    // team selection function
+    public void ToggleButton(Button activeButton, Button inactiveButton)
+    {
+        activeButton.interactable = false;
+        inactiveButton.interactable = true;
+    }
+
+    public void OnButton1Click()
+    {
+        ToggleButton(teamA, teamB);
+        teamSelected = "Lightning Strikes";
+    }
+
+    public void OnButton2Click()
+    {
+        ToggleButton(teamB, teamA);
+        teamSelected = "Mighty Warriors";
+    }
+
+    public void SelectTeam()
+   {
+        room1SettingPanel.SetActive(false);
+        room2SettingPanel.SetActive(false);
+        room3SettingPanel.SetActive(false);
+        waitingPanel.SetActive(true);
+        teamSelectionPanel.SetActive(false);
+
+        PlayerPrefs.SetString("Team", teamSelected);
         string namePlayer = PlayerPrefs.GetString("username");
         PhotonNetwork.NickName = namePlayer;
         PhotonNetwork.JoinOrCreateRoom(roomName, options, TypedLobby.Default);
@@ -91,7 +127,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         }
         else if (roomName == level2RoomID)
         {
-            PhotonNetwork.LoadLevel("Level2SceneName");
+            PhotonNetwork.LoadLevel("Level2");
         }
         else if (roomName == level3RoomID)
         {
@@ -108,16 +144,32 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-
+       
         if (PhotonNetwork.IsMasterClient)
         {
-            playerName[0].text = PhotonNetwork.NickName;
-            photonView.RPC("Send_PlayersName", RpcTarget.OthersBuffered, 0, PhotonNetwork.NickName);
+            if (!teamA.interactable)
+            {
+                playerName[0].text = PhotonNetwork.NickName;
+                photonView.RPC("Send_PlayersName", RpcTarget.OthersBuffered, 0, PhotonNetwork.NickName);
+            }
+            else
+            {
+                playerName[1].text = PhotonNetwork.NickName;
+                photonView.RPC("Send_PlayersName", RpcTarget.OthersBuffered, 1, PhotonNetwork.NickName);
+            }
         }
         else
         {
-            playerName[1].text = PhotonNetwork.NickName;
-            photonView.RPC("Send_PlayersName", RpcTarget.OthersBuffered, 1, PhotonNetwork.NickName);
+            if (!teamA.interactable)
+            {
+                playerName[0].text = PhotonNetwork.NickName;
+                photonView.RPC("Send_PlayersName", RpcTarget.OthersBuffered, 0, PhotonNetwork.NickName);
+            }
+            else
+            {
+                playerName[1].text = PhotonNetwork.NickName;
+                photonView.RPC("Send_PlayersName", RpcTarget.OthersBuffered, 1, PhotonNetwork.NickName);
+            }
         }
     }
 

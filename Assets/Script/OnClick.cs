@@ -5,7 +5,7 @@ public class OnClick : MonoBehaviour
 {
     public string sceneName;
 
-    void ChangeScene()
+    public void ChangeScene()
     {
         SceneManager.LoadScene(sceneName);
     }

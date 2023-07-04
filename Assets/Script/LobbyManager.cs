@@ -6,7 +6,8 @@ using TMPro;
 
 public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
-    public TextMeshProUGUI[] playerName;
+    public TextMeshProUGUI[] playerNameA;
+    public TextMeshProUGUI[] playerNameB;
 
     public GameObject room1SettingPanel;
     public GameObject room2SettingPanel;
@@ -14,15 +15,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public GameObject waitingPanel;
     public GameObject teamSelectionPanel;
 
-    public Button teamA;
-    public Button teamB;
+    public Button[] teamAButtons;
+    public Button[] teamBButtons;
     public Button startButton;
 
     RoomOptions options;
-    public int maxNumberOfPlayers = 2;
-    public int minNumberOfPlayers = 1;
-
-    //public string sceneMP;
+    public int maxNumberOfPlayers = 6;
+    public int minNumberOfPlayers = 2;
 
     private string level1RoomID = "Level1Room";
     private string level2RoomID = "Level2Room";
@@ -56,24 +55,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         }
     }
 
-/*    public void JoinRoom1()
-    {
-        roomName = level1RoomID;
-        JoinRoom();
-    }
-
-    public void JoinRoom2()
-    {
-        roomName = level2RoomID;
-        JoinRoom();
-    }
-
-    public void JoinRoom3()
-    {
-        roomName = level3RoomID;
-        JoinRoom();
-    }
-*/
     public void JoinRoom(string room)
     {
         room1SettingPanel.SetActive(false);
@@ -85,27 +66,55 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         roomName = room;
     }
 
-    // team selection function
-    public void ToggleButton(Button activeButton, Button inactiveButton)
+    // Team A button click event handlers
+    public void OnButton1ClickA()
     {
-        activeButton.interactable = false;
-        inactiveButton.interactable = true;
-    }
-
-    public void OnButton1Click()
-    {
-        ToggleButton(teamA, teamB);
+        ToggleButton(teamAButtons, 0);
         teamSelected = "Lightning Strikes";
     }
 
-    public void OnButton2Click()
+    public void OnButton2ClickA()
     {
-        ToggleButton(teamB, teamA);
+        ToggleButton(teamAButtons, 1);
+        teamSelected = "Lightning Strikes";
+    }
+
+    public void OnButton3ClickA()
+    {
+        ToggleButton(teamAButtons, 2);
+        teamSelected = "Lightning Strikes";
+    }
+
+    // Team B button click event handlers
+    public void OnButton1ClickB()
+    {
+        ToggleButton(teamBButtons, 0);
         teamSelected = "Mighty Warriors";
     }
 
+    public void OnButton2ClickB()
+    {
+        ToggleButton(teamBButtons, 1);
+        teamSelected = "Mighty Warriors";
+    }
+
+    public void OnButton3ClickB()
+    {
+        ToggleButton(teamBButtons, 2);
+        teamSelected = "Mighty Warriors";
+    }
+
+    // Toggle button selection for the specified team
+    private void ToggleButton(Button[] buttons, int selectedIndex)
+    {
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].interactable = (i == selectedIndex);
+        }
+    }
+
     public void SelectTeam()
-   {
+    {
         room1SettingPanel.SetActive(false);
         room2SettingPanel.SetActive(false);
         room3SettingPanel.SetActive(false);
@@ -144,53 +153,52 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-       
+
         if (PhotonNetwork.IsMasterClient)
         {
-            if (!teamA.interactable)
-            {
-                playerName[0].text = PhotonNetwork.NickName;
-                photonView.RPC("Send_PlayersName", RpcTarget.OthersBuffered, 0, PhotonNetwork.NickName);
-            }
-            else
-            {
-                playerName[1].text = PhotonNetwork.NickName;
-                photonView.RPC("Send_PlayersName", RpcTarget.OthersBuffered, 1, PhotonNetwork.NickName);
-            }
+            UpdatePlayerNameUI(playerNameA, 0);
+            photonView.RPC("SendPlayerName", RpcTarget.OthersBuffered, 0, PhotonNetwork.NickName);
         }
         else
         {
-            if (!teamA.interactable)
-            {
-                playerName[0].text = PhotonNetwork.NickName;
-                photonView.RPC("Send_PlayersName", RpcTarget.OthersBuffered, 0, PhotonNetwork.NickName);
-            }
-            else
-            {
-                playerName[1].text = PhotonNetwork.NickName;
-                photonView.RPC("Send_PlayersName", RpcTarget.OthersBuffered, 1, PhotonNetwork.NickName);
-            }
+            UpdatePlayerNameUI(playerNameB, 0);
+            photonView.RPC("SendPlayerName", RpcTarget.OthersBuffered, 1, PhotonNetwork.NickName);
         }
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        throw new System.NotImplementedException();
+        // Handle player leaving the room
     }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
-        throw new System.NotImplementedException();
+        // Handle player property updates
     }
 
     public override void OnMasterClientSwitched(Player newMasterClient)
     {
-        throw new System.NotImplementedException();
+        // Handle master client switch
     }
 
     [PunRPC]
-    void Send_PlayersName(int index, string name)
+    void SendPlayerName(int index, string name)
     {
-        playerName[index].text = name;
+        if (index == 0)
+        {
+            UpdatePlayerNameUI(playerNameA, 1, name);
+        }
+        else
+        {
+            UpdatePlayerNameUI(playerNameB, 1, name);
+        }
+    }
+
+    private void UpdatePlayerNameUI(TextMeshProUGUI[] playerNameUI, int index, string playerName = "")
+    {
+        if (index >= 0 && index < playerNameUI.Length)
+        {
+            playerNameUI[index].text = playerName;
+        }
     }
 }

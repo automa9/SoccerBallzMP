@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
-public class PlayerMovementMP : MonoBehaviour
+public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
 {
     private CharacterController _controller;
     PhotonView view;
@@ -23,6 +23,8 @@ public class PlayerMovementMP : MonoBehaviour
 
     [SerializeField]
     private float _jumpHeight = 1.0f;
+
+    private Photon.Realtime.Player kickingPlayer;
 
     private void Start()
     {
@@ -62,7 +64,12 @@ public class PlayerMovementMP : MonoBehaviour
                 // Release the ball and apply the kick force
                 Debug.Log("Have kicked");
                 animator.SetBool("isShoot", true);
-            }else{animator.SetBool("isShoot", false);}
+                kickingPlayer = PhotonNetwork.LocalPlayer;
+            }
+            else
+            {
+                animator.SetBool("isShoot", false);
+            }
 
             if (movementDirection != Vector3.zero)
             {
@@ -88,8 +95,18 @@ public class PlayerMovementMP : MonoBehaviour
             _playerVelocity.y += _gravityValue * Time.deltaTime;
             _controller.Move(_playerVelocity * Time.deltaTime);
         }
+        else
+        {
+            if (kickingPlayer != null && kickingPlayer == PhotonNetwork.LocalPlayer)
+            {
+                animator.SetBool("isShoot", true);
+            }
+            else
+            {
+                animator.SetBool("isShoot", false);
+            }
+        }
     }
-
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -109,9 +126,8 @@ public class PlayerMovementMP : MonoBehaviour
             // Serialize the player velocity
             stream.SendNext(_playerVelocity);
 
-            // Serialize the animator parameters
-            //stream.SendNext(animator.GetBool("Dribble"));
-            //stream.SendNext(animator.GetBool("isJump"));
+            // Serialize the kicking player
+            stream.SendNext(kickingPlayer);
         }
         else
         {
@@ -129,9 +145,8 @@ public class PlayerMovementMP : MonoBehaviour
             // Deserialize the player velocity
             _playerVelocity = (Vector3)stream.ReceiveNext();
 
-            // Deserialize the animator parameters
-            //animator.SetBool("Dribble", (bool)stream.ReceiveNext());
-            //animator.SetBool("isJump", (bool)stream.ReceiveNext());
+            // Deserialize the kicking player
+            kickingPlayer = (Photon.Realtime.Player)stream.ReceiveNext();
         }
     }
 }

@@ -14,19 +14,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lobby.unity
     guid: 129791a626c144643822cac344e80976
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MultiLevel.unity
     guid: 4ec202bf1eb9e8b418b1210fdabd63d1
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TestRoom.unity
     guid: 3af505ce31f356047a65cf9d8356c4d7
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Achievement.unity
     guid: 9375b172ffac5aa458fa596eba29a71a
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Scoreboard.unity
     guid: 943dd892ee8cca4459210c48d0b758a9
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Guide.unity
     guid: ceedcd1d47a7b7244adc0b74752fcbfd
   m_configObjects: {}

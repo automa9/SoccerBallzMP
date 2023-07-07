@@ -3,20 +3,18 @@ using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
-    public TextMeshProUGUI[] playerNameA;
-    public TextMeshProUGUI[] playerNameB;
+    public TextMeshProUGUI[] playerName;
+    public Button[] selectButton;
 
     public GameObject room1SettingPanel;
     public GameObject room2SettingPanel;
     public GameObject room3SettingPanel;
     public GameObject waitingPanel;
-    public GameObject teamSelectionPanel;
 
-    public Button[] teamAButtons;
-    public Button[] teamBButtons;
     public Button startButton;
 
     RoomOptions options;
@@ -27,8 +25,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     private string level2RoomID = "Level2Room";
     private string level3RoomID = "Level3Room";
 
-    private string teamSelected;
     private string roomName = string.Empty;
+    private string namePlayer;
 
     void Start()
     {
@@ -38,6 +36,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             IsOpen = true,
             IsVisible = true
         };
+
         PhotonNetwork.GameVersion = "1";
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -45,7 +44,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     void Update()
     {
-        if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount == maxNumberOfPlayers)
+        if (PhotonNetwork.IsMasterClient && CheckPlayersTeamSelected())
         {
             startButton.interactable = true;
         }
@@ -60,71 +59,68 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         room1SettingPanel.SetActive(false);
         room2SettingPanel.SetActive(false);
         room3SettingPanel.SetActive(false);
-        teamSelectionPanel.SetActive(true);
-        waitingPanel.SetActive(false);
-
-        roomName = room;
-    }
-
-    // Team A button click event handlers
-    public void OnButton1ClickA()
-    {
-        ToggleButton(teamAButtons, 0);
-        teamSelected = "Lightning Strikes";
-    }
-
-    public void OnButton2ClickA()
-    {
-        ToggleButton(teamAButtons, 1);
-        teamSelected = "Lightning Strikes";
-    }
-
-    public void OnButton3ClickA()
-    {
-        ToggleButton(teamAButtons, 2);
-        teamSelected = "Lightning Strikes";
-    }
-
-    // Team B button click event handlers
-    public void OnButton1ClickB()
-    {
-        ToggleButton(teamBButtons, 0);
-        teamSelected = "Mighty Warriors";
-    }
-
-    public void OnButton2ClickB()
-    {
-        ToggleButton(teamBButtons, 1);
-        teamSelected = "Mighty Warriors";
-    }
-
-    public void OnButton3ClickB()
-    {
-        ToggleButton(teamBButtons, 2);
-        teamSelected = "Mighty Warriors";
-    }
-
-    // Toggle button selection for the specified team
-    private void ToggleButton(Button[] buttons, int selectedIndex)
-    {
-        for (int i = 0; i < buttons.Length; i++)
-        {
-            buttons[i].interactable = (i == selectedIndex);
-        }
-    }
-
-    public void SelectTeam()
-    {
-        room1SettingPanel.SetActive(false);
-        room2SettingPanel.SetActive(false);
-        room3SettingPanel.SetActive(false);
         waitingPanel.SetActive(true);
-        teamSelectionPanel.SetActive(false);
+        roomName = room;
 
-        PlayerPrefs.SetString("Team", teamSelected);
-        string namePlayer = PlayerPrefs.GetString("username");
-        PhotonNetwork.NickName = namePlayer;
         PhotonNetwork.JoinOrCreateRoom(roomName, options, TypedLobby.Default);
+    }
+
+    public bool CheckPlayersTeamSelected()
+    {
+        int count = 0;
+        // Use to check if all players have selected the team
+        for(int i = 0; i < playerName.Length; i++)
+        {
+            if(playerName[i].text != "Waiting for player...")
+            {
+                count++;
+            }
+        }
+
+        if(count >= minNumberOfPlayers)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void onClickToSelectTeam(int buttonIndex)
+    {
+        namePlayer = PlayerPrefs.GetString("username");
+        PhotonNetwork.NickName = namePlayer;
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            UpdatePlayerName(buttonIndex, namePlayer + " [Master]");
+            photonView.RPC("SendPlayerName", RpcTarget.OthersBuffered, buttonIndex, namePlayer + " [Master]");
+        }
+        else
+        {
+            UpdatePlayerName(buttonIndex, namePlayer);
+            photonView.RPC("SendPlayerName", RpcTarget.OthersBuffered, buttonIndex, namePlayer);
+        }
+
+        // Previous Selected Place
+        if (PlayerPrefs.HasKey("previousIndex"))
+        {
+            int previousIndex = PlayerPrefs.GetInt("previousIndex");
+
+            UpdatePlayerName(previousIndex, "Waiting for player...");
+            photonView.RPC("SendPlayerName", RpcTarget.OthersBuffered, previousIndex, "Waiting for player...");
+        }
+
+        // Team Select Updated
+        if(buttonIndex == 0 || buttonIndex == 1 || buttonIndex == 2)
+        {
+            PlayerPrefs.SetString("teamSelected", "Lightning Strikes");
+        }
+        else
+        {
+            PlayerPrefs.SetString("teamSelected", "Mighty Warriors");
+        }
+
+        PlayerPrefs.SetInt("previousIndex", buttonIndex);
     }
 
     public void LoadScene()
@@ -144,8 +140,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         }
     }
 
-    public override void OnConnectedToMaster() // callback function for when first connection is made
+    public override void OnConnectedToMaster() 
     {
+        // callback function for when first connection is made
         PhotonNetwork.JoinLobby(TypedLobby.Default);
         Debug.Log("Connected");
     }
@@ -153,22 +150,55 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
+       
+    }
+
+    public void ClickToLeffRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+
 
         if (PhotonNetwork.IsMasterClient)
         {
-            UpdatePlayerNameUI(playerNameA, 0);
-            photonView.RPC("SendPlayerName", RpcTarget.OthersBuffered, 0, PhotonNetwork.NickName);
+            for (int i = 0; i < playerName.Length; i++)
+            {
+                if (playerName[i].text.Contains("[Master]"))
+                {
+                    UpdatePlayerName(i, "Waiting for player...");
+                    photonView.RPC("SendPlayerName", RpcTarget.OthersBuffered, i, "Waiting for player...");
+                    break;
+                }
+            }
         }
         else
         {
-            UpdatePlayerNameUI(playerNameB, 0);
-            photonView.RPC("SendPlayerName", RpcTarget.OthersBuffered, 1, PhotonNetwork.NickName);
+            for (int i = 0; i < playerName.Length; i++)
+            {
+                if (playerName[i].text == namePlayer)
+                {
+                    UpdatePlayerName(i, "Waiting for player...");
+                    photonView.RPC("SendPlayerName", RpcTarget.OthersBuffered, i, "Waiting for player...");
+                    break;
+                }
+            }
         }
+
+        room1SettingPanel.SetActive(true);
+        room2SettingPanel.SetActive(true);
+        room3SettingPanel.SetActive(true);
+        waitingPanel.SetActive(false);
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        // Handle player leaving the room
+        for(int i = 0; i < playerName.Length; i++)
+        {
+            if(playerName[i].text == otherPlayer.NickName)
+            {
+                SendPlayerName(i, "Waiting for player..."); 
+                break;
+            }
+        }  
     }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
@@ -179,26 +209,50 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public override void OnMasterClientSwitched(Player newMasterClient)
     {
         // Handle master client switch
+        for (int i = 0; i < playerName.Length; i++)
+        {
+            if (playerName[i].text != newMasterClient.NickName && playerName[i].text.Contains("[Master]"))
+            {
+                SendPlayerName(i, "Waiting for player...");              
+            }
+            else if(newMasterClient.NickName == playerName[i].text)
+            {
+                string name = playerName[i].text + " [Master]";
+                SendPlayerName(i, name);
+               
+            }
+        }
     }
+
+    void UpdatePlayerName(int index, string name)
+    {
+        playerName[index].text = name;
+
+        if (name == "Waiting for player...")
+        {
+            selectButton[index].interactable = true;
+        }
+        else
+        {
+            selectButton[index].interactable = false;
+        }
+
+    }
+
 
     [PunRPC]
     void SendPlayerName(int index, string name)
     {
-        if (index == 0)
+        playerName[index].text = name;
+
+        if (name == "Waiting for player...")
         {
-            UpdatePlayerNameUI(playerNameA, 1, name);
+            selectButton[index].interactable = true;
         }
         else
         {
-            UpdatePlayerNameUI(playerNameB, 1, name);
-        }
+            selectButton[index].interactable = false;
+        }    
     }
 
-    private void UpdatePlayerNameUI(TextMeshProUGUI[] playerNameUI, int index, string playerName = "")
-    {
-        if (index >= 0 && index < playerNameUI.Length)
-        {
-            playerNameUI[index].text = playerName;
-        }
-    }
 }

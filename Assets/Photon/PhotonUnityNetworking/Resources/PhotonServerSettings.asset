@@ -44,6 +44,8 @@ MonoBehaviour:
   - Send_PlayersName
   - Set_OtherPlayerName
   - SendPlayerName
+  - SendButtonInteractable
+  - SendDefault
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

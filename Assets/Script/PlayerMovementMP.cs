@@ -32,18 +32,12 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
         animator = GetComponent<Animator>();
         _controller = GetComponent<CharacterController>();
     }
-
-    IEnumerator JumpAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        _playerVelocity.y += Mathf.Sqrt(_jumpHeight * -3.0f * _gravityValue);
-    }
-
+    
     void Update()
     {
         Debug.Log("Player not poses controller");
-        if (view.IsMine)
-        {
+        
+        if (view.IsMine){
             Debug.Log("Player Successfully Poses controller");
             _groundedPlayer = _controller.isGrounded;
             if (_groundedPlayer && _playerVelocity.y < 0)
@@ -65,47 +59,33 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
                 Debug.Log("Have kicked");
                 animator.SetBool("isShoot", true);
                 kickingPlayer = PhotonNetwork.LocalPlayer;
-            }
-            else
-            {
+            }else {
                 animator.SetBool("isShoot", false);
             }
 
-            if (movementDirection != Vector3.zero)
-            {
+            if (movementDirection != Vector3.zero){
                 animator.SetBool("Dribble", true);
                 Quaternion desiredRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
                 transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, _rotationSpeed * Time.deltaTime);
-            }
-            else
-            {
-                animator.SetBool("Dribble", false);
-            }
+            }else {animator.SetBool("Dribble", false);}
 
-            if (_groundedPlayer && Input.GetKeyDown(KeyCode.Space))
-            {
+            if (_groundedPlayer && Input.GetKeyDown(KeyCode.Space)){
+
                 animator.SetBool("isJump", true);
                 StartCoroutine(JumpAfterDelay(0.4f));
-            }
-            else
-            {
+            }else {
                 animator.SetBool("isJump", false);
             }
 
             _playerVelocity.y += _gravityValue * Time.deltaTime;
             _controller.Move(_playerVelocity * Time.deltaTime);
         }
-        else
-        {
-            if (kickingPlayer != null && kickingPlayer == PhotonNetwork.LocalPlayer)
-            {
-                animator.SetBool("isShoot", true);
-            }
-            else
-            {
-                animator.SetBool("isShoot", false);
-            }
-        }
+    }
+
+     IEnumerator JumpAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        _playerVelocity.y += Mathf.Sqrt(_jumpHeight * -3.0f * _gravityValue);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -128,9 +108,7 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
 
             // Serialize the kicking player
             stream.SendNext(kickingPlayer);
-        }
-        else
-        {
+        }else{
             // Read data from the stream (e.g., update position, rotation, or custom properties)
 
             // Deserialize the position

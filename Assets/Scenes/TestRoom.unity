@@ -1842,10 +1842,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2986979058994442199, guid: c60b9f88e97f9724b8c7866339893e0f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1410493074382065506, guid: c60b9f88e97f9724b8c7866339893e0f,
         type: 3}
       propertyPath: sceneViewId
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706829967260009736, guid: c60b9f88e97f9724b8c7866339893e0f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706829967260009736, guid: c60b9f88e97f9724b8c7866339893e0f,
+        type: 3}
+      propertyPath: teleportIfFar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706829967260009736, guid: c60b9f88e97f9724b8c7866339893e0f,
+        type: 3}
+      propertyPath: teleportIfFarDistance
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6954765401388275450, guid: c60b9f88e97f9724b8c7866339893e0f,
         type: 3}
@@ -5315,8 +5335,6 @@ GameObject:
   - component: {fileID: 1777327464}
   - component: {fileID: 1777327466}
   - component: {fileID: 1777327465}
-  - component: {fileID: 1777327467}
-  - component: {fileID: 1777327468}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5381,47 +5399,6 @@ MonoBehaviour:
   gameTimeDuration: 999
   goToScene: MainMenu
   sceneMP: MultiGame
---- !u!114 &1777327467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1777327463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 575b828681b90dc41a9219a7d82b1afa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerName:
-  - 
-  - 
-  player: {fileID: 6954765401388275450, guid: c60b9f88e97f9724b8c7866339893e0f, type: 3}
-  playerPos:
-  - {x: 133.41, y: 0, z: -4.33}
-  - {x: 133.41, y: 0, z: 8.718}
---- !u!114 &1777327468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1777327463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 9
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!4 &1831889003
 Transform:
   m_ObjectHideFlags: 0

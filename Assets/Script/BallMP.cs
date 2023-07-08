@@ -9,16 +9,6 @@ public class BallMP : MonoBehaviour
     public AudioClip fenceHit;
     public AudioClip poleHit;
 
-    private void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Fence")

@@ -156,7 +156,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public void ClickToLeffRoom()
     {
         PhotonNetwork.LeaveRoom();
-
+        PlayerPrefs.DeleteKey("previousIndex");
 
         if (PhotonNetwork.IsMasterClient)
         {

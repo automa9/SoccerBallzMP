@@ -5596,10 +5596,18 @@ MonoBehaviour:
   playerName:
   - 
   - 
+  - 
+  - 
+  - 
+  - 
   player: {fileID: 6954765401388275450, guid: c60b9f88e97f9724b8c7866339893e0f, type: 3}
   playerPos:
   - {x: 133.41, y: 0, z: -4.33}
+  - {x: 130.88, y: 0, z: -3.03}
+  - {x: 135.94, y: 0, z: -3.03}
   - {x: 133.41, y: 0, z: 8.718}
+  - {x: 130.88, y: 0, z: 7.418}
+  - {x: 133.41, y: 0, z: 7.418}
 --- !u!114 &1777327468
 MonoBehaviour:
   m_ObjectHideFlags: 0

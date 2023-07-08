@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d97d4d404f057134ca8b50f360e4956c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerSpeed: 3
+  _playerSpeed: 0.45
   _rotationSpeed: 5
   _gravityValue: -9.81
   _jumpHeight: 1
@@ -269,6 +269,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
+  - {fileID: 5262994566664232205}
   - {fileID: 5867971109830352856}
   - {fileID: -2986979058994442199}
   - {fileID: 5112591873794280581}

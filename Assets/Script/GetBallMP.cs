@@ -81,7 +81,6 @@ public class GetBallMP : MonoBehaviourPunCallbacks, IPunObservable
                 animator.SetBool("isShoot", false);
             }
         }
-
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

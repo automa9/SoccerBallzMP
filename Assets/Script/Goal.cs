@@ -2,8 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
+using Photon.Pun;
 
-public class Goal : MonoBehaviour
+public class Goal : MonoBehaviourPunCallbacks
 {
     public Text scoredText;
     public TextMeshProUGUI scoreText;
@@ -28,12 +29,18 @@ public class Goal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Ball") && isGoal == false)
+        if (other.gameObject.CompareTag("Ball") && isGoal == false )
         {
             isGoal = true;
             StartCoroutine(Delay());
             score ++;
-            scoreText.text = score.ToString();
+
+            if (photonView.IsMine)
+            {
+                scoreText.text = score.ToString();
+                photonView.RPC("UpdatePlayerScore", RpcTarget.OthersBuffered, score);
+            }
+
             StartCoroutine(ShowScoredText());
             audioSource.PlayOneShot(audioClip);
 
@@ -42,5 +49,12 @@ public class Goal : MonoBehaviour
             ballRb.angularVelocity = Vector3.zero;
             other.gameObject.transform.position = spawnPoint.position;            
         }
+    }
+
+    [PunRPC]
+    private void UpdatePlayerScore(int score)
+    {
+        Debug.Log(score);
+        scoreText.text = score.ToString();
     }
 }

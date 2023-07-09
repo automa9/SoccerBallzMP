@@ -10,7 +10,7 @@ public class GetBallMP : MonoBehaviourPunCallbacks, IPunObservable
     public KeyCode keyShoot;
     public float force = 10f;
 
-    private Animator animator;
+    public Animator animator;
     private AudioSource audioSource;
     public AudioClip audioClip;
     public bool isShoot = false;
@@ -38,12 +38,12 @@ public class GetBallMP : MonoBehaviourPunCallbacks, IPunObservable
             //other.transform.position = ball_pos.position;
         }
 
-        if (other.CompareTag("Goal"))
+        /*if (other.CompareTag("Goal"))
         {
             isShoot = true;
             isStickToPlayer = false;
             ball.transform.position = spawnPoint.position;
-        }
+        }*/
     }
 
     IEnumerator ShootAfterDelay(float delay)
@@ -55,13 +55,14 @@ public class GetBallMP : MonoBehaviourPunCallbacks, IPunObservable
         Vector3 shootdirection = transform.forward;
         shootdirection.y += 0.1f;
         //audioSource.PlayOneShot(audioClip);
+        Debug.Log("I have kick the ball");
 
         ballRigidbody.AddForce(shootdirection * force, ForceMode.Impulse);
     }
 
     void Update()
     {
-        if (isStickToPlayer)
+        if (isStickToPlayer && photonView.IsMine)
         {
             Vector2 currentLocation = new Vector2(transform.position.x, transform.position.z);
             float speed = Vector2.Distance(currentLocation, previousLocation) / Time.deltaTime;
@@ -102,7 +103,7 @@ public class GetBallMP : MonoBehaviourPunCallbacks, IPunObservable
             // Deserialize the "isStickToPlayer" flag
             isStickToPlayer = (bool)stream.ReceiveNext();
 
-            // Deserialize the animator parameters
+            // Deserialize the animator parameters 
             animator.SetBool("isShoot", (bool)stream.ReceiveNext());
         }
     }

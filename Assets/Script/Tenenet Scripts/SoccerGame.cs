@@ -76,7 +76,7 @@ public class SoccerGame : MonoBehaviour
 
     private void Update()
     {
-        /*
+
     if (view.IsMine)
     {
         // Check if the game has started
@@ -107,18 +107,17 @@ public class SoccerGame : MonoBehaviour
 
 }
 
-[PunRPC]
-private void managePlayer(bool status)
-{
-    FindObjectOfType<PlayerMovement>().enabled = status;
-    FindObjectOfType<PlayerBall>().enabled = status;
-}
+    [PunRPC]
+    private void managePlayer(bool status)
+    {
+        FindObjectOfType<PlayerMovement>().enabled = status;
+        FindObjectOfType<PlayerBall>().enabled = status;
+    }
 
-[PunRPC]
-private void managePlayerMP(bool status)
-{
-    FindObjectOfType<PlayerMovementMP>().enabled = status;
-}
-*/
+    [PunRPC]
+    private void managePlayerMP(bool status)
+    {
+        FindObjectOfType<PlayerMovementMP>().enabled = status;
     }
 }
+

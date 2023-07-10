@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 
 public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
@@ -33,7 +34,7 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
         _controller = GetComponent<CharacterController>();
     }
     
-    void Update()
+    void FixedUpdate()
     {
         Debug.Log("Player not poses controller");
         

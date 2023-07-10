@@ -37,13 +37,6 @@ public class GetBallMP : MonoBehaviourPunCallbacks, IPunObservable
             ball = other.gameObject;
             //other.transform.position = ball_pos.position;
         }
-
-        /*if (other.CompareTag("Goal"))
-        {
-            isShoot = true;
-            isStickToPlayer = false;
-            ball.transform.position = spawnPoint.position;
-        }*/
     }
 
     IEnumerator ShootAfterDelay(float delay)
@@ -75,7 +68,7 @@ public class GetBallMP : MonoBehaviourPunCallbacks, IPunObservable
                 // Release the ball and apply the kick force
                 Debug.Log("Have kicked");
                 animator.SetBool("isShoot", true);
-                StartCoroutine(ShootAfterDelay(0.4f));
+                StartCoroutine(ShootAfterDelay(0.2f));
             }
             else
             {

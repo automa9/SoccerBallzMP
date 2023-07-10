@@ -416,7 +416,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 36369e185adcb584f981d91e255c62dd,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6385042655123344991}
+      addedObject: {fileID: -3933039577523665556}
   m_SourcePrefab: {fileID: 100100000, guid: 36369e185adcb584f981d91e255c62dd, type: 3}
 --- !u!95 &4408942880750655034 stripped
 Animator:
@@ -565,7 +565,7 @@ MonoBehaviour:
   - {fileID: 5867971109830352856}
   - {fileID: -2986979058994442199}
   - {fileID: 5112591873794280581}
-  - {fileID: 6385042655123344991}
+  - {fileID: -3933039577523665556}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -584,11 +584,11 @@ MonoBehaviour:
   m_PositionModel:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
-    TeleportIfDistanceGreaterThan: 4
+    TeleportIfDistanceGreaterThan: 10
     InterpolateOption: 2
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 1
-    ExtrapolateOption: 0
+    ExtrapolateOption: 1
     ExtrapolateSpeed: 1
     ExtrapolateIncludingRoundTripTime: 1
     ExtrapolateNumberOfStoredPositions: 1
@@ -621,30 +621,30 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: Dribble
   - Type: 4
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: isShoot
   - Type: 4
     SynchronizeType: 1
     Name: isJump
   m_SynchronizeLayers:
-  - SynchronizeType: 1
+  - SynchronizeType: 2
     LayerIndex: 0
---- !u!114 &6385042655123344991
+--- !u!114 &-3933039577523665556
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6954765401388275450}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d789810143b89a049a49bed9f5e2910b, type: 3}
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleportIfFar: 1
-  teleportIfFarDistance: 5
-  smoothpos: 0.5
-  smoothRot: 0.5
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 10
 --- !u!4 &7768598187477863488 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 36369e185adcb584f981d91e255c62dd,

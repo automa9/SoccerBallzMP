@@ -20,7 +20,7 @@ public class LagCompensation : MonoBehaviourPun,IPunObservable
 
     void  Awake()
     {
-         PhotonNetwork.SendRate = 30;
+        PhotonNetwork.SendRate = 30;
         PhotonNetwork.SerializationRate = 10;
 
     }

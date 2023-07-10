@@ -14,6 +14,11 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
     private int playerCount;
     private int teamPosition;
 
+    private void Awake(){
+        PhotonNetwork.SendRate = 30;
+        PhotonNetwork.SerializationRate = 15;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,11 +61,6 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     [PunRPC]
     void Set_OtherPlayerName(int index, string name)

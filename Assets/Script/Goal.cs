@@ -38,11 +38,12 @@ public class Goal : MonoBehaviourPunCallbacks
             if (photonView.IsMine)
             {
                 scoreText.text = score.ToString();
+                
                 photonView.RPC("UpdatePlayerScore", RpcTarget.OthersBuffered, score);
-            }
 
-            StartCoroutine(ShowScoredText());
-            audioSource.PlayOneShot(audioClip);
+                StartCoroutine(ShowScoredText());
+                audioSource.PlayOneShot(audioClip);
+            }
 
             Rigidbody ballRb = other.GetComponent<Rigidbody>();
             ballRb.velocity = Vector3.zero;

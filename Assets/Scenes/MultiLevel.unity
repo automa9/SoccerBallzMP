@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 111.528145, g: 116.05496, b: 121.19905, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -521,7 +521,6 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 150538015}
-  - {fileID: 150538020}
   - {fileID: 135134225916819392}
   sceneViewId: 99
   InstantiationId: 0
@@ -559,22 +558,6 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &150538020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975457251683257}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d789810143b89a049a49bed9f5e2910b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teleportIfFar: 0
-  teleportIfFarDistance: 0
-  smoothpos: 0.5
-  smoothRot: 0.5
 --- !u!1 &198269811
 GameObject:
   m_ObjectHideFlags: 0
@@ -5926,7 +5909,7 @@ MonoBehaviour:
   countdownDuration: 3
   gameTimeDuration: 999
   goToScene: MainMenu
-  sceneMP: MultiGame
+  sceneMP: MultiLevel
 --- !u!114 &1777327467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7849,7 +7832,6 @@ GameObject:
   - component: {fileID: 150538009}
   - component: {fileID: 150538014}
   - component: {fileID: 150538015}
-  - component: {fileID: 150538020}
   - component: {fileID: 135134225916819392}
   m_Layer: 0
   m_Name: SoccerBall

@@ -536,7 +536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball_pos: {fileID: 2274904021232252782}
   keyShoot: 323
-  force: 20
+  force: 10
   animator: {fileID: 4408942880750655034}
   audioClip: {fileID: 8300000, guid: 9901e62376919694e80d1b78965e0ae9, type: 3}
   isShoot: 0

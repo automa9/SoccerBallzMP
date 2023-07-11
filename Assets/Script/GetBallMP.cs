@@ -39,7 +39,7 @@ public class GetBallMP : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    IEnumerator ShootAfterDelay(float delay)
+    /*IEnumerator ShootAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         isShoot = true;
@@ -51,11 +51,11 @@ public class GetBallMP : MonoBehaviourPunCallbacks, IPunObservable
         Debug.Log("I have kick the ball");
 
         ballRigidbody.AddForce(shootdirection * force, ForceMode.Impulse);
-    }
+    }*/
 
     void Update()
     {
-        if (isStickToPlayer && photonView.IsMine)
+        if (isStickToPlayer)
         {
             Vector2 currentLocation = new Vector2(transform.position.x, transform.position.z);
             float speed = Vector2.Distance(currentLocation, previousLocation) / Time.deltaTime;
@@ -63,12 +63,9 @@ public class GetBallMP : MonoBehaviourPunCallbacks, IPunObservable
             ball.transform.Rotate(new Vector3(transform.right.x, 0, transform.right.z), speed, Space.World);
             previousLocation = currentLocation;
 
-            if (Input.GetKeyDown(keyShoot))
+            if (photonView.IsMine && Input.GetKeyDown(keyShoot))
             {
-                // Release the ball and apply the kick force
-                Debug.Log("Have kicked");
-                animator.SetBool("isShoot", true);
-                StartCoroutine(ShootAfterDelay(0.2f));
+                photonView.RPC("KickBall", RpcTarget.All);
             }
             else
             {
@@ -99,5 +96,24 @@ public class GetBallMP : MonoBehaviourPunCallbacks, IPunObservable
             // Deserialize the animator parameters 
             animator.SetBool("isShoot", (bool)stream.ReceiveNext());
         }
+    }
+
+    [PunRPC]
+    void KickBall()
+    {
+            Debug.Log("Have kicked");
+            animator.SetBool("isShoot", true);
+            /*StartCoroutine(ShootAfterDelay(delay));*/
+            isShoot = true;
+            isStickToPlayer = false;
+            Rigidbody ballRigidbody = ball.GetComponent<Rigidbody>();
+
+            Debug.Log("Rigid Body not null: " + ballRigidbody.position);
+
+            Vector3 shootdirection = transform.forward;
+            shootdirection.y += 0.1f;
+            //audioSource.PlayOneShot(audioClip);
+
+            ballRigidbody.AddForce(shootdirection * force, ForceMode.Impulse);
     }
 }

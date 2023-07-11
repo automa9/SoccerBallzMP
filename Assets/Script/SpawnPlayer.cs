@@ -38,23 +38,29 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
                 photonView.RPC("Set_OtherPlayerName", RpcTarget.OthersBuffered, i, PhotonNetwork.NickName);
 
                 Quaternion rotationB;
+                string color;
+                Color nameColor;
 
                 if (i > 2)
                 {
                    rotationB = Quaternion.Euler(0f, 180f, 0f);
-                    
+                    nameColor = Color.red;
+                    color = "Red";
                 }
                 else
                 {
                    rotationB =  Quaternion.identity;
+                    nameColor = Color.blue;
+                    color = "Blue";
                 }
 
                 GameObject spawnPlayer = PhotonNetwork.Instantiate(player.name, playerPos[i], rotationB);
 
                 TextMeshProUGUI playername = spawnPlayer.GetComponentInChildren<TextMeshProUGUI>();
                 playername.text = playerName[i];
+                playername.color = nameColor;
 
-                photonView.RPC("UpdatePlayerName", RpcTarget.OthersBuffered, playerName[i]);
+                photonView.RPC("UpdatePlayerName", RpcTarget.OthersBuffered, playerName[i], color);
 
                 break;
             }
@@ -69,7 +75,7 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    void UpdatePlayerName(string name)
+    void UpdatePlayerName(string name, string color)
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject player in players)
@@ -78,6 +84,15 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
             if(playerName.text == "Name")
             {
                 playerName.text = name;
+                if(color == "Blue")
+                {
+                    playerName.color = Color.blue;
+                }
+                else
+                {
+                    playerName.color = Color.red;
+                }
+                
                 break;
             }
         }

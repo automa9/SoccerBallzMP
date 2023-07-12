@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 111.528145, g: 116.05496, b: 121.19905, a: 1}
+  m_IndirectSpecularColor: {r: 1.4105517, g: 7.38313, b: 35.264484, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -358,7 +358,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level1Room
+          m_StringArgument: Level3Room
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &45250342
@@ -1223,7 +1223,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level1Room
+          m_StringArgument: Level2Room
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &380724576
@@ -3378,7 +3378,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4b682b222709ae6479df04f638fc29a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 04a5cde462fe1f8498905bc344bfc177, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6002,6 +6002,7 @@ MonoBehaviour:
   waitingPanel: {fileID: 1705385235}
   startButton: {fileID: 161795377}
   maxNumberOfPlayers: 6
+  minNumberOfPlayers: 2
 --- !u!1 &1741030393
 GameObject:
   m_ObjectHideFlags: 0

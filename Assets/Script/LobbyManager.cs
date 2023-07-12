@@ -136,7 +136,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         }
         else if (roomName == level3RoomID)
         {
-            PhotonNetwork.LoadLevel("Level3SceneName");
+            PhotonNetwork.LoadLevel("Level3");
         }
     }
 

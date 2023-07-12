@@ -19,6 +19,8 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField]
     private float _playerSpeed = 5f;
 
+    private float _basePlayerSpeed; //to Store the base player speed
+
     [SerializeField]
     private float _rotationSpeed = 10f;
 
@@ -36,12 +38,18 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
 
     Rigidbody _rigidbody;
 
+    private bool isPoweredUp = false;
+    private float powerUpDuration = 10f;
+    private float powerUpTimer = 0f;
+
+
     private void Start()
     {
         view = GetComponent<PhotonView>();
         animator = GetComponent<Animator>();
         _controller = GetComponent<CharacterController>();
         _rigidbody = GetComponent<Rigidbody>();
+        _basePlayerSpeed = _playerSpeed;
     }
     
     void FixedUpdate()
@@ -106,6 +114,16 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
 
             _playerVelocity.y += _gravityValue * Time.deltaTime;
             _controller.Move(_playerVelocity * Time.deltaTime);
+
+            if (isPoweredUp)
+            {
+                powerUpTimer -= Time.deltaTime;
+                if(powerUpTimer <=0)
+                {
+                    isPoweredUp = false;
+                    _playerSpeed = _basePlayerSpeed;
+                }
+            }
         }
     }
 
@@ -153,5 +171,25 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
             // Deserialize the kicking player
             kickingPlayer = (Photon.Realtime.Player)stream.ReceiveNext();
         }
+    }
+
+    private float GetPlayerSpeed()
+    {
+        if (isPoweredUp)
+        {
+            return _playerSpeed * 2f;
+
+        }
+        else
+        {
+            return _playerSpeed;
+        }
+    }
+
+    public void ActivatePowerUp()
+    {
+        isPoweredUp = true;
+        powerUpTimer = powerUpDuration;
+        _playerSpeed = _basePlayerSpeed * 2f;
     }
 }

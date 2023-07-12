@@ -5532,6 +5532,53 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710673259}
   m_Mesh: {fileID: 439889003073474085, guid: f5e5206eb8c5da24faf950f5599d4eb4, type: 3}
+--- !u!1 &1736435533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1736435535}
+  - component: {fileID: 1736435534}
+  m_Layer: 0
+  m_Name: PowerUpSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1736435534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736435533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 907cba1b81fc83246a90c0e4a76f5980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpPrefab: {fileID: 3412465947173363936, guid: 8ebeffb53c4586940939d40d4e9a94cd,
+    type: 3}
+  spawnInterval: 10
+--- !u!4 &1736435535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736435533}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 138.06, y: 0, z: 2.27}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1751315242
 GameObject:
   m_ObjectHideFlags: 0
@@ -5844,7 +5891,6 @@ GameObject:
   - component: {fileID: 1777327466}
   - component: {fileID: 1777327465}
   - component: {fileID: 1777327467}
-  - component: {fileID: 1777327470}
   - component: {fileID: 1777327468}
   - component: {fileID: 1777327469}
   m_Layer: 0
@@ -5980,21 +6026,6 @@ MonoBehaviour:
     height: 100
   WindowId: 101
   Visible: 1
---- !u!114 &1777327470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1777327463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 907cba1b81fc83246a90c0e4a76f5980, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerUpPrefab: {fileID: 3412465947173363936, guid: 8ebeffb53c4586940939d40d4e9a94cd,
-    type: 3}
-  spawnInterval: 10
 --- !u!1 &1790177382
 GameObject:
   m_ObjectHideFlags: 0

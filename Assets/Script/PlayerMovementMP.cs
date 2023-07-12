@@ -8,6 +8,13 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
 {
     private CharacterController _controller;
     PhotonView view;
+    public Vector3 moveDirection;
+
+    public const float maxDashTime = 2.0f;
+    public float dashDistance = 20;
+    public float dashStoppingSpeed = 0.1f;
+    public float dashSpeed = 5f;
+    float currentDashTime = maxDashTime;
 
     [SerializeField]
     private float _playerSpeed = 5f;
@@ -27,11 +34,14 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
 
     private Photon.Realtime.Player kickingPlayer;
 
+    Rigidbody _rigidbody;
+
     private void Start()
     {
         view = GetComponent<PhotonView>();
         animator = GetComponent<Animator>();
         _controller = GetComponent<CharacterController>();
+        _rigidbody = GetComponent<Rigidbody>();
     }
     
     void FixedUpdate()
@@ -70,13 +80,29 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
                 transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, _rotationSpeed * Time.deltaTime);
             }else {animator.SetBool("Dribble", false);}
 
-            if (_groundedPlayer && Input.GetKeyDown(KeyCode.Space)){
+            //dash
+            if (_groundedPlayer && Input.GetKeyDown(KeyCode.Mouse1)){
 
-                animator.SetBool("isJump", true);
-                StartCoroutine(JumpAfterDelay(0.4f));
+               //animator.SetBool("isJump", true);
+                //StartCoroutine(JumpAfterDelay(0.4f));
             }else {
                 animator.SetBool("isJump", false);
             }
+
+            //Dash
+            if (Input.GetButtonDown("Fire2")) //Right mouse button
+            {
+                currentDashTime = 0;  }
+                
+            if(currentDashTime < maxDashTime)
+            {
+                animator.SetBool("Dribble", true);
+                moveDirection = transform.forward * dashDistance;
+                currentDashTime += dashStoppingSpeed;}
+            else{
+                moveDirection = Vector3.zero;
+                 //animator.SetBool("Dribble", false);
+            }  _controller.Move(moveDirection * Time.deltaTime * dashSpeed);
 
             _playerVelocity.y += _gravityValue * Time.deltaTime;
             _controller.Move(_playerVelocity * Time.deltaTime);

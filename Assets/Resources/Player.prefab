@@ -274,7 +274,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5858250332567339873}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.004000187, y: 0.1016711, z: 0.894}
+  m_LocalPosition: {x: 0.004000187, y: 0.1016711, z: 0.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -417,6 +417,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: -3933039577523665556}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 36369e185adcb584f981d91e255c62dd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9170704710593519188}
   m_SourcePrefab: {fileID: 100100000, guid: 36369e185adcb584f981d91e255c62dd, type: 3}
 --- !u!95 &4408942880750655034 stripped
 Animator:
@@ -518,7 +522,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d97d4d404f057134ca8b50f360e4956c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerSpeed: 0.45
+  moveDirection: {x: 0, y: 0, z: 0}
+  dashDistance: 1.25
+  dashStoppingSpeed: 0.1
+  dashSpeed: 4
+  _playerSpeed: 0.1
   _rotationSpeed: 5
   _gravityValue: -9.81
   _jumpHeight: 1
@@ -645,6 +653,27 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 1
   m_TeleportIfDistanceGreaterThan: 10
+--- !u!114 &9170704710593519188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6954765401388275450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8f33dbae7a3d74c8bb56bd81d0a2be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeTime: 0.5
+  isTrailActive: 0
+  meshRefreshRate: 0.1
+  meshDestroyDelay: 1
+  positionToSpawn: {fileID: 7768598187477863488}
+  mat: {fileID: 2100000, guid: 1b92ed91b15b3ea40bd7a11b7285dd14, type: 2}
+  shaderVarRef: 
+  shaderVarRate: 0.1
+  shaderVarRefreshRate: 0.5
 --- !u!4 &7768598187477863488 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 36369e185adcb584f981d91e255c62dd,

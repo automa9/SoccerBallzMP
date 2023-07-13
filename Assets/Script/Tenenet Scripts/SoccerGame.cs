@@ -111,7 +111,7 @@ public class SoccerGame : MonoBehaviour
     private void managePlayer(bool status)
     {
         FindObjectOfType<PlayerMovement>().enabled = status;
-        FindObjectOfType<PlayerBall>().enabled = status;
+        //FindObjectOfType<PlayerBall>().enabled = status;
     }
 
     [PunRPC]

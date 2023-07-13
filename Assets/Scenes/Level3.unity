@@ -4442,7 +4442,7 @@ MonoBehaviour:
   countdownDuration: 3
   gameTimeDuration: 999
   goToScene: MainMenu
-  sceneMP: MultiGame
+  sceneMP: Level3
 --- !u!114 &1777327467
 MonoBehaviour:
   m_ObjectHideFlags: 0

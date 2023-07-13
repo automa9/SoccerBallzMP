@@ -20,11 +20,16 @@ public class MeshTrail : MonoBehaviour
     public float shaderVarRate = 0.1f;
     public float shaderVarRefreshRate =0.5f;
 
+    float valueToAnimate;
+
+    public int powerUpCount = 3;
+
     // Update is called once per frame
     void Update()
     {
-         if (Input.GetKeyDown(KeyCode.Mouse1) && !isTrailActive){
+         if (Input.GetKeyDown(KeyCode.Mouse1) && !isTrailActive && powerUpCount > 0){
             isTrailActive = true;
+            powerUpCount -= 1;
             StartCoroutine(ActivateTrail(activeTime));
          }
     }
@@ -65,13 +70,22 @@ public class MeshTrail : MonoBehaviour
     }
     IEnumerator AnimateMaterialFloat(Material mat, float goal, float rate, float meshRefreshRate)
     {
-        float valueToAnimate = mat.GetFloat(shaderVarRef);
 
-        while (valueToAnimate>goal)
+        if (mat.HasProperty(shaderVarRef))
+        {
+            valueToAnimate = mat.GetFloat(shaderVarRef);
+        }
+
+        while (valueToAnimate > goal)
         {
             valueToAnimate -=rate;
             mat.SetFloat(shaderVarRef,valueToAnimate);
             yield return new WaitForSeconds(meshRefreshRate);
         }
+    }
+
+    public int getPowerUpCount()
+    {
+        return powerUpCount;
     }
 }

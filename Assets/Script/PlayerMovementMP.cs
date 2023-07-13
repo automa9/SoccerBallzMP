@@ -42,6 +42,7 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
     private float powerUpDuration = 10f;
     private float powerUpTimer = 0f;
 
+    public int powerUpCount = 3;
 
     private void Start()
     {
@@ -56,7 +57,8 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
     {
         Debug.Log("Player not poses controller");
         
-        if (view.IsMine){
+        if ( view == null || view.IsMine )
+        {
             Debug.Log("Player Successfully Poses controller");
             _groundedPlayer = _controller.isGrounded;
             if (_groundedPlayer && _playerVelocity.y < 0)
@@ -89,7 +91,8 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
             }else {animator.SetBool("Dribble", false);}
 
             //dash
-            if (_groundedPlayer && Input.GetKeyDown(KeyCode.Mouse1)){
+            if (_groundedPlayer && Input.GetKeyDown(KeyCode.Mouse1))
+            {
 
                //animator.SetBool("isJump", true);
                 //StartCoroutine(JumpAfterDelay(0.4f));
@@ -98,20 +101,23 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
             }
 
             //Dash
-            if (Input.GetButtonDown("Fire2")) //Right mouse button
+            if (Input.GetButtonDown("Fire2") && powerUpCount > 0) //Right mouse button
             {
-                currentDashTime = 0;  }
+                currentDashTime = 0;
+                powerUpCount=-1;
+            }
                 
             if(currentDashTime < maxDashTime)
             {
                 animator.SetBool("Dribble", true);
                 moveDirection = transform.forward * dashDistance;
                 currentDashTime += dashStoppingSpeed;}
-            else{
+            else
+            {
                 moveDirection = Vector3.zero;
                  //animator.SetBool("Dribble", false);
-            }  _controller.Move(moveDirection * Time.deltaTime * dashSpeed);
-
+            }  
+            _controller.Move(moveDirection * Time.deltaTime * dashSpeed);
             _playerVelocity.y += _gravityValue * Time.deltaTime;
             _controller.Move(_playerVelocity * Time.deltaTime);
 

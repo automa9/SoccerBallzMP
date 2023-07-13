@@ -8,11 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3230}
-  - component: {fileID: 3226}
-  - component: {fileID: 3629}
-  - component: {fileID: 3628}
-  - component: {fileID: 3622}
+  - component: {fileID: 3231}
+  - component: {fileID: 3227}
+  - component: {fileID: 3631}
+  - component: {fileID: 3630}
+  - component: {fileID: 3624}
   m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
@@ -20,7 +20,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &3230
+--- !u!224 &3231
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -32,7 +32,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3229}
+  - {fileID: 3230}
   m_Father: {fileID: 7768598187477863488}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -41,7 +41,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 3}
   m_SizeDelta: {x: 5, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!223 &3226
+--- !u!223 &3227
 Canvas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,7 +63,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &3629
+--- !u!114 &3631
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &3628
+--- !u!114 &3630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3622
+--- !u!114 &3624
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,9 +123,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3229}
-  - component: {fileID: 3002}
-  - component: {fileID: 3624}
+  - component: {fileID: 3230}
+  - component: {fileID: 3003}
+  - component: {fileID: 3626}
   m_Layer: 3
   m_Name: Name
   m_TagString: Untagged
@@ -133,7 +133,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &3229
+--- !u!224 &3230
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +145,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3230}
+  m_Father: {fileID: 3231}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -153,7 +153,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 5, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &3002
+--- !u!222 &3003
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,7 +161,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918}
   m_CullTransparentMesh: 1
---- !u!114 &3624
+--- !u!114 &3626
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -379,16 +379,16 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 36369e185adcb584f981d91e255c62dd,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3230}
+      addedObject: {fileID: 3231}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 36369e185adcb584f981d91e255c62dd,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2986}
+      addedObject: {fileID: 2987}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 36369e185adcb584f981d91e255c62dd,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3001}
+      addedObject: {fileID: 3002}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 36369e185adcb584f981d91e255c62dd,
         type: 3}
       insertIndex: -1
@@ -396,19 +396,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 36369e185adcb584f981d91e255c62dd,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3626}
+      addedObject: {fileID: 3628}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 36369e185adcb584f981d91e255c62dd,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3627}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 36369e185adcb584f981d91e255c62dd,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3623}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 36369e185adcb584f981d91e255c62dd,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3621}
+      addedObject: {fileID: 3629}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 36369e185adcb584f981d91e255c62dd,
         type: 3}
       insertIndex: -1
@@ -416,11 +408,19 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 36369e185adcb584f981d91e255c62dd,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3620}
+      addedObject: {fileID: 3623}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 36369e185adcb584f981d91e255c62dd,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3630}
+      addedObject: {fileID: 3627}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 36369e185adcb584f981d91e255c62dd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3622}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 36369e185adcb584f981d91e255c62dd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3632}
   m_SourcePrefab: {fileID: 100100000, guid: 36369e185adcb584f981d91e255c62dd, type: 3}
 --- !u!95 &4408942880750655034 stripped
 Animator:
@@ -434,7 +434,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7801681070497328043}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &2986
+--- !u!136 &2987
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -457,7 +457,7 @@ CapsuleCollider:
   m_Height: 3.6874623
   m_Direction: 1
   m_Center: {x: 0, y: 0.76626897, z: 0}
---- !u!143 &3001
+--- !u!143 &3002
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -510,7 +510,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
---- !u!114 &3626
+--- !u!114 &3628
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -530,7 +530,8 @@ MonoBehaviour:
   _rotationSpeed: 5
   _gravityValue: -9.81
   _jumpHeight: 1
---- !u!114 &3627
+  powerUpCount: 3
+--- !u!114 &3629
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -550,7 +551,7 @@ MonoBehaviour:
   isShoot: 0
   spawnPoint: {fileID: 2295514923579228141, guid: 36bf97863ba91274e977b81b7500fe0d,
     type: 3}
---- !u!114 &3623
+--- !u!114 &3625
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -569,15 +570,15 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 3626}
+  - {fileID: 3628}
+  - {fileID: 3629}
+  - {fileID: 3623}
   - {fileID: 3627}
-  - {fileID: 3621}
-  - {fileID: 3625}
-  - {fileID: 3620}
+  - {fileID: 3622}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &3621
+--- !u!114 &3623
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -610,7 +611,7 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &3625
+--- !u!114 &3627
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -637,7 +638,7 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
---- !u!114 &3620
+--- !u!114 &3622
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -653,7 +654,7 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 1
   m_TeleportIfDistanceGreaterThan: 10
---- !u!114 &3630
+--- !u!114 &3632
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -674,6 +675,7 @@ MonoBehaviour:
   shaderVarRef: 
   shaderVarRate: 0.1
   shaderVarRefreshRate: 0.5
+  powerUpCount: 3
 --- !u!4 &7768598187477863488 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 36369e185adcb584f981d91e255c62dd,

@@ -34,15 +34,22 @@ public class Goal : MonoBehaviourPunCallbacks
             isGoal = true;
             StartCoroutine(Delay());
             score ++;
-
-            if (photonView.IsMine)
+            if(photonView == null)
             {
                 scoreText.text = score.ToString();
-                
-                photonView.RPC("UpdatePlayerScore", RpcTarget.OthersBuffered, score);
-
                 StartCoroutine(ShowScoredText());
                 audioSource.PlayOneShot(audioClip);
+            }
+            else
+            {
+                if (photonView.IsMine)
+                {
+                    scoreText.text = score.ToString();
+
+                    photonView.RPC("UpdatePlayerScore", RpcTarget.OthersBuffered, score);
+                    StartCoroutine(ShowScoredText());
+                    audioSource.PlayOneShot(audioClip);
+                }
             }
 
             Rigidbody ballRb = other.GetComponent<Rigidbody>();

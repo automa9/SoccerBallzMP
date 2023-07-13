@@ -63,14 +63,35 @@ public class GetBallMP : MonoBehaviourPunCallbacks, IPunObservable
             ball.transform.Rotate(new Vector3(transform.right.x, 0, transform.right.z), speed, Space.World);
             previousLocation = currentLocation;
 
-            if (photonView.IsMine && Input.GetKeyDown(keyShoot))
+            if (view == null && Input.GetKeyDown(keyShoot))
             {
-                photonView.RPC("KickBall", RpcTarget.All);
+                Debug.Log("Have kicked");
+                animator.SetBool("isShoot", true);
+                /*StartCoroutine(ShootAfterDelay(delay));*/
+                isShoot = true;
+                isStickToPlayer = false;
+                Rigidbody ballRigidbody = ball.GetComponent<Rigidbody>();
+
+                Debug.Log("Rigid Body not null: " + ballRigidbody.position);
+
+                Vector3 shootdirection = transform.forward;
+                shootdirection.y += 0.1f;
+                //audioSource.PlayOneShot(audioClip);
+
+                ballRigidbody.AddForce(shootdirection * force, ForceMode.Impulse);
             }
-            else
+            else if(view != null)
             {
-                animator.SetBool("isShoot", false);
+                if (view.IsMine && Input.GetKeyDown(keyShoot))
+                {
+                    view.RPC("KickBall", RpcTarget.All);
+                }
+                else
+                {
+                    animator.SetBool("isShoot", false);
+                }
             }
+            else { }
         }
     }
 

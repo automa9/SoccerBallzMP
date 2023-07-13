@@ -15,16 +15,16 @@ MonoBehaviour:
   active: 1
   quality:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 3
   spectralLut:
     m_OverrideState: 0
     m_Value: {fileID: 0}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.11
+    m_Value: 0.131
   m_MaxSamples:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 4
 --- !u!114 &-4092675652655507473
 MonoBehaviour:
   m_ObjectHideFlags: 3

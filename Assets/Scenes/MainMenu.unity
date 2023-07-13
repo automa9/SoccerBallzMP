@@ -3876,12 +3876,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 982122095}
-  - {fileID: 1902699300}
   - {fileID: 1557709041}
   - {fileID: 1755878150}
   - {fileID: 763482009}
-  - {fileID: 1745850602}
+  - {fileID: 1902699300}
   - {fileID: 1681153290}
+  - {fileID: 1745850602}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

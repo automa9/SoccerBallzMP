@@ -523,9 +523,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0, z: 0}
-  dashDistance: 1.25
+  dashDistance: 1.3
   dashStoppingSpeed: 0.1
-  dashSpeed: 4
+  dashSpeed: 5
   _playerSpeed: 0.1
   _rotationSpeed: 5
   _gravityValue: -9.81

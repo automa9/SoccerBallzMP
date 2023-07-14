@@ -8,6 +8,7 @@ TagManager:
   - Goal
   - Pole
   - Ball
+  - PowerUp
   layers:
   - Default
   - TransparentFX

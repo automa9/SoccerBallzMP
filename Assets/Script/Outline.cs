@@ -23,5 +23,6 @@ public class Outline : MonoBehaviour
             ballRb.angularVelocity = Vector3.zero;
             other.gameObject.transform.position = spawnPoint.position;
         }
+     
     }
 }

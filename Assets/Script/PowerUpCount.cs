@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PowerUpCount : MonoBehaviour
+public class PowerUpCounter : MonoBehaviour
 {
-    // Start is called before the first frame update
     public TextMeshProUGUI countText;
 
-    int powerUpCount;
+    private MeshTrail meshTrail;
 
-    void Start()
+    private void Start()
     {
-       
+        meshTrail = FindObjectOfType<MeshTrail>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        powerUpCount = FindObjectOfType<MeshTrail>().getPowerUpCount();
+        int powerUpCount = meshTrail.GetPowerUpCount();
         countText.text = powerUpCount.ToString();
     }
 }

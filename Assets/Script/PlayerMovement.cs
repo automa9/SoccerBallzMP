@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float _playerSpeed = 5f;
 
+    private float _basePlayerSpeed; // Store the base player speed
+
     [SerializeField]
     private float _rotationSpeed = 10f;
 
@@ -21,20 +23,23 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float _gravityValue = -9.81f;
 
-    private void Start() 
+    private bool isPoweredUp = false; // Flag to track power-up state
+
+    private void Start()
     {
-        _controller = GetComponent<CharacterController>();    
+        _controller = GetComponent<CharacterController>();
+        _basePlayerSpeed = _playerSpeed; // Store the base player speed at the start
     }
 
-    private void Update() 
+    private void Update()
     {
-        Movement();    
+        Movement();
     }
 
-    void Movement() 
+    void Movement()
     {
         _groundedPlayer = _controller.isGrounded;
-        if (_groundedPlayer && _playerVelocity.y < 0) 
+        if (_groundedPlayer && _playerVelocity.y < 0)
         {
             _playerVelocity.y = 0f;
         }
@@ -45,9 +50,9 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movementInput = Quaternion.Euler(0, _followCamera.transform.eulerAngles.y, 0) * new Vector3(horizontalInput, 0, verticalInput);
         Vector3 movementDirection = movementInput.normalized;
 
-        _controller.Move(movementDirection * _playerSpeed * Time.deltaTime);
+        _controller.Move(movementDirection * GetPlayerSpeed() * Time.deltaTime);
 
-        if (movementDirection != Vector3.zero) 
+        if (movementDirection != Vector3.zero)
         {
             Quaternion desiredRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
 
@@ -56,7 +61,31 @@ public class PlayerMovement : MonoBehaviour
 
         _playerVelocity.y += _gravityValue * Time.deltaTime;
         _controller.Move(_playerVelocity * Time.deltaTime);
+    }
 
+    private float GetPlayerSpeed()
+    {
+        if (isPoweredUp)
+        {
+            return _playerSpeed * 2f; // Double the player speed during power-up
+        }
+        else
+        {
+            return _playerSpeed;
+        }
+    }
 
+    // Call this method to activate the power-up
+    public void ActivatePowerUp()
+    {
+        isPoweredUp = true;
+        StartCoroutine(DeactivatePowerUpAfterDelay());
+    }
+
+    // Coroutine to deactivate the power-up after a certain duration
+    private IEnumerator DeactivatePowerUpAfterDelay()
+    {
+        yield return new WaitForSeconds(10f); // Adjust the duration as needed
+        isPoweredUp = false;
     }
 }

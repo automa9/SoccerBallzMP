@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PowerUpScript : MonoBehaviour
 {
-    public float speedMultiplier = 2f; // Adjust this value to control the speed boost
+    public float speedMultiplier = 5f; // Adjust this value to control the speed boost
 
     void OnTriggerEnter(Collider other)
     {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1.4105107, g: 7.3831224, b: 35.2643, a: 1}
+  m_IndirectSpecularColor: {r: 1.4105517, g: 7.38313, b: 35.264484, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5563,9 +5563,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907cba1b81fc83246a90c0e4a76f5980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpPrefab: {fileID: 3412465947173363936, guid: 8ebeffb53c4586940939d40d4e9a94cd,
+  powerUpPrefab: {fileID: 3854721473539578051, guid: ba16a3466668ef042936a3ba06b3bc23,
     type: 3}
-  spawnInterval: 10
+  spawnInterval: 20
   spawnRadius: 10
 --- !u!4 &1736435535
 Transform:
@@ -5575,7 +5575,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1736435533}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 138.06, y: 0, z: 2.27}
+  m_LocalPosition: {x: 133.37, y: 0, z: 2.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

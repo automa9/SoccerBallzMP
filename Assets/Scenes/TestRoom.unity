@@ -2338,6 +2338,7 @@ MonoBehaviour:
   audioSource: {fileID: 954269128}
   audioClip: {fileID: 8300000, guid: 4468a0b4bad7cb64da7246fd0adacc04, type: 3}
   isGoal: 0
+  goalName: 
 --- !u!65 &679842727
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2634,6 +2635,7 @@ MonoBehaviour:
   audioSource: {fileID: 954269128}
   audioClip: {fileID: 8300000, guid: 4468a0b4bad7cb64da7246fd0adacc04, type: 3}
   isGoal: 0
+  goalName: 
 --- !u!65 &805849783
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5402,7 +5404,7 @@ PrefabInstance:
     - target: {fileID: 3625, guid: c60b9f88e97f9724b8c7866339893e0f, type: 3}
       propertyPath: ObservedComponents.Array.data[0]
       value: 
-      objectReference: {fileID: 1713738982}
+      objectReference: {fileID: 0}
     - target: {fileID: 3625, guid: c60b9f88e97f9724b8c7866339893e0f, type: 3}
       propertyPath: ObservedComponents.Array.data[2]
       value: 
@@ -5421,6 +5423,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3628, guid: c60b9f88e97f9724b8c7866339893e0f, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167, guid: c60b9f88e97f9724b8c7866339893e0f, type: 3}
+      propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1410493074382065506, guid: c60b9f88e97f9724b8c7866339893e0f,
@@ -5508,18 +5514,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c60b9f88e97f9724b8c7866339893e0f, type: 3}
---- !u!114 &1713738982 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3628, guid: c60b9f88e97f9724b8c7866339893e0f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1713738981}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d97d4d404f057134ca8b50f360e4956c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &1713738988 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4408942880750655034, guid: c60b9f88e97f9724b8c7866339893e0f,
@@ -5818,6 +5812,7 @@ MonoBehaviour:
   gameTimeDuration: 999
   goToScene: MainMenu
   sceneMP: MultiGame
+  scoredText: {fileID: 0}
 --- !u!4 &1831889003
 Transform:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class Goal : MonoBehaviourPunCallbacks
     public AudioSource audioSource;
     public AudioClip audioClip;
     public bool isGoal = false;
+    public string goalName;
 
     private IEnumerator ShowScoredText()
     {
@@ -37,6 +38,7 @@ public class Goal : MonoBehaviourPunCallbacks
             if(photonView == null)
             {
                 scoreText.text = score.ToString();
+                scoredText.text = "SCORED";
                 StartCoroutine(ShowScoredText());
                 audioSource.PlayOneShot(audioClip);
             }
@@ -47,6 +49,7 @@ public class Goal : MonoBehaviourPunCallbacks
                     scoreText.text = score.ToString();
 
                     photonView.RPC("UpdatePlayerScore", RpcTarget.OthersBuffered, score);
+                    scoredText.text = goalName + " SCORED";
                     StartCoroutine(ShowScoredText());
                     audioSource.PlayOneShot(audioClip);
                 }
@@ -64,5 +67,7 @@ public class Goal : MonoBehaviourPunCallbacks
     {
         Debug.Log(score);
         scoreText.text = score.ToString();
+        scoredText.text = goalName + " SCORED";
+        StartCoroutine(ShowScoredText());
     }
 }

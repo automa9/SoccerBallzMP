@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1.4105517, g: 7.38313, b: 35.264484, a: 1}
+  m_IndirectSpecularColor: {r: 1.4105107, g: 7.3831224, b: 35.2643, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -195,7 +195,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: SCORED!
+  m_Text: 
 --- !u!222 &99042139
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2421,6 +2421,7 @@ MonoBehaviour:
   audioSource: {fileID: 954269128}
   audioClip: {fileID: 8300000, guid: 4468a0b4bad7cb64da7246fd0adacc04, type: 3}
   isGoal: 0
+  goalName: MIGHTY
 --- !u!65 &679842727
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2742,6 +2743,7 @@ MonoBehaviour:
   audioSource: {fileID: 954269128}
   audioClip: {fileID: 8300000, guid: 4468a0b4bad7cb64da7246fd0adacc04, type: 3}
   isGoal: 0
+  goalName: LIGHTNING
 --- !u!65 &805849783
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5564,6 +5566,7 @@ MonoBehaviour:
   powerUpPrefab: {fileID: 3412465947173363936, guid: 8ebeffb53c4586940939d40d4e9a94cd,
     type: 3}
   spawnInterval: 10
+  spawnRadius: 10
 --- !u!4 &1736435535
 Transform:
   m_ObjectHideFlags: 0
@@ -5954,9 +5957,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 839960216}
   countdownDuration: 3
-  gameTimeDuration: 999
+  gameTimeDuration: 180
   goToScene: MainMenu
   sceneMP: MultiLevel
+  scoredText: {fileID: 99042138}
 --- !u!114 &1777327467
 MonoBehaviour:
   m_ObjectHideFlags: 0

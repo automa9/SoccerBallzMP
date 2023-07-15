@@ -934,7 +934,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: SCORED!
+  m_Text: 
 --- !u!222 &99042139
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8293,6 +8293,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 679842726}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: aac8a5a937f1dbc4b99d1b7c89ee0c1d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 679842729}
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: aac8a5a937f1dbc4b99d1b7c89ee0c1d,
         type: 3}
       insertIndex: -1
@@ -8327,6 +8331,7 @@ MonoBehaviour:
   audioSource: {fileID: 954269128}
   audioClip: {fileID: 8300000, guid: 4468a0b4bad7cb64da7246fd0adacc04, type: 3}
   isGoal: 0
+  goalName: MIGHTY
 --- !u!65 &679842727
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8354,6 +8359,28 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 679842724}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &679842729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679842725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 66
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &687833761
 GameObject:
   m_ObjectHideFlags: 0
@@ -9762,6 +9789,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 805849782}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: aac8a5a937f1dbc4b99d1b7c89ee0c1d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 805849784}
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: aac8a5a937f1dbc4b99d1b7c89ee0c1d,
         type: 3}
       insertIndex: -1
@@ -9802,6 +9833,7 @@ MonoBehaviour:
   audioSource: {fileID: 954269128}
   audioClip: {fileID: 8300000, guid: 4468a0b4bad7cb64da7246fd0adacc04, type: 3}
   isGoal: 0
+  goalName: LIGHTNING
 --- !u!65 &805849783
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9823,6 +9855,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.6423104, y: 2.117816, z: 2.1031349}
   m_Center: {x: 0, y: -0.014200282, z: 0}
+--- !u!114 &805849784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805849778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 67
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &812633655
 GameObject:
   m_ObjectHideFlags: 0
@@ -19828,8 +19882,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ddd0c1a8f99974c838a83ac57c476f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 0}
-  audioSource: {fileID: 0}
+  spawnPoint: {fileID: 101141729}
+  audioSource: {fileID: 954269128}
   audioClip: {fileID: 0}
 --- !u!65 &1613197388
 BoxCollider:
@@ -21554,9 +21608,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 839960216}
   countdownDuration: 3
-  gameTimeDuration: 999
+  gameTimeDuration: 180
   goToScene: MainMenu
   sceneMP: Level2
+  scoredText: {fileID: 99042138}
 --- !u!114 &1777327467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21621,6 +21676,7 @@ MonoBehaviour:
   powerUpPrefab: {fileID: 3412465947173363936, guid: 8ebeffb53c4586940939d40d4e9a94cd,
     type: 3}
   spawnInterval: 60
+  spawnRadius: 10
 --- !u!1 &1777605928
 GameObject:
   m_ObjectHideFlags: 0
@@ -24141,7 +24197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Profile: {fileID: 11400000, guid: fd78518800b66ea4780daaf55910b04b, type: 2}
-  m_StaticLightingSkyUniqueID: 1
+  m_StaticLightingSkyUniqueID: 0
   m_StaticLightingCloudsUniqueID: 0
   m_StaticLightingVolumetricClouds: 0
 --- !u!4 &1887804950

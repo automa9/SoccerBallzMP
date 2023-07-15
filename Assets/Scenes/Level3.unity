@@ -288,7 +288,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: SCORED!
+  m_Text: 
 --- !u!222 &99042139
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1858,6 +1858,7 @@ MonoBehaviour:
   audioSource: {fileID: 954269128}
   audioClip: {fileID: 8300000, guid: 4468a0b4bad7cb64da7246fd0adacc04, type: 3}
   isGoal: 0
+  goalName: MIGHTY
 --- !u!65 &679842727
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2277,6 +2278,7 @@ MonoBehaviour:
   audioSource: {fileID: 954269128}
   audioClip: {fileID: 8300000, guid: 4468a0b4bad7cb64da7246fd0adacc04, type: 3}
   isGoal: 0
+  goalName: LIGHTNING
 --- !u!65 &805849783
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4440,9 +4442,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 839960216}
   countdownDuration: 3
-  gameTimeDuration: 999
+  gameTimeDuration: 180
   goToScene: MainMenu
   sceneMP: Level3
+  scoredText: {fileID: 99042138}
 --- !u!114 &1777327467
 MonoBehaviour:
   m_ObjectHideFlags: 0

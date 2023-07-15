@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 using TMPro;
+using UnityEngine.UI;
 
 public class SoccerGame : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class SoccerGame : MonoBehaviour
     private bool isGameStarted = false;
     private string scoreGame;
     public string sceneMP;
+    public Text scoredText;
+
+    private Goal[] goals;
 
     private void Start()
     {
@@ -55,8 +59,35 @@ public class SoccerGame : MonoBehaviour
         // Game Over
         timerText.text = "Game Over";
         isGameStarted = false;
-        int goalScore = FindObjectOfType<Goal>().score;
-        scoreGame = (goalScore * 10).ToString(); //this is only example calculation for score
+        goals = FindObjectsOfType<Goal>();
+
+        for (int i = 0; i < goals.Length; i++){
+            if(goals[0].score > goals[1].score)
+            {
+                scoreGame = (goals[0].score * 10).ToString(); //this is only example calculation for score
+                scoredText.text = goals[0].goalName + " WIN";
+                scoredText.gameObject.SetActive(true);
+                yield return new WaitForSeconds(2f);
+                scoredText.gameObject.SetActive(false);
+            }
+            else if(goals[0].score < goals[1].score)
+            {
+                scoreGame = (goals[1].score * 10).ToString(); //this is only example calculation for score
+
+                scoredText.text = goals[0].goalName + " WIN";
+                scoredText.gameObject.SetActive(true);
+                yield return new WaitForSeconds(2f);
+                scoredText.gameObject.SetActive(false);
+            }
+            else
+            {
+                scoredText.text = "TIE GAME";
+                scoredText.gameObject.SetActive(true);
+                yield return new WaitForSeconds(2f);
+                scoredText.gameObject.SetActive(false);
+            }
+        }
+
         Debug.Log(scoreGame);
         saveScore();
         SceneManager.LoadScene(goToScene);

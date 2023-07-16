@@ -21,7 +21,7 @@ public class PowerUpSpawner : MonoBehaviour
     {
         Vector3 spawnPosition = transform.position;
         spawnPosition += Random.insideUnitSphere * spawnRadius;
-        spawnPosition.y = 0f; // Ensure the power-up spawns at ground level or desired height
+        spawnPosition.y = 1f; // Ensure the power-up spawns at ground level or desired height
         return spawnPosition;
     }
 }

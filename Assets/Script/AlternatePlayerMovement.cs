@@ -4,7 +4,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 
-public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
+public class AlternatePlayerMovement : MonoBehaviourPunCallbacks, IPunObservable
 {
     private CharacterController _controller;
     PhotonView view;
@@ -18,8 +18,6 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
 
     [SerializeField]
     private float _playerSpeed = 5f;
-
-    private float _basePlayerSpeed; //to Store the base player speed
 
     [SerializeField]
     private float _rotationSpeed = 10f;
@@ -38,27 +36,19 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
 
     Rigidbody _rigidbody;
 
-    public bool isPoweredUp = false;
-    private float powerUpDuration = 10f;
-    private float powerUpTimer = 0f;
-
-    public int powerUpCount = 3;
-
     private void Start()
     {
         view = GetComponent<PhotonView>();
         animator = GetComponent<Animator>();
         _controller = GetComponent<CharacterController>();
         _rigidbody = GetComponent<Rigidbody>();
-        _basePlayerSpeed = _playerSpeed;
     }
     
     void FixedUpdate()
     {
         Debug.Log("Player not poses controller");
         
-        if ( view == null || view.IsMine )
-        {
+        if ( view == null || view.IsMine ){
             Debug.Log("Player Successfully Poses controller");
             _groundedPlayer = _controller.isGrounded;
             if (_groundedPlayer && _playerVelocity.y < 0)
@@ -91,8 +81,7 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
             }else {animator.SetBool("Dribble", false);}
 
             //dash
-            if (_groundedPlayer && Input.GetKeyDown(KeyCode.Mouse1))
-            {
+            if (_groundedPlayer && Input.GetKeyDown(KeyCode.Mouse1)){
 
                //animator.SetBool("isJump", true);
                 //StartCoroutine(JumpAfterDelay(0.4f));
@@ -101,27 +90,22 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
             }
 
             //Dash
-            if (Input.GetButtonDown("Fire2") && powerUpCount > 0) //Right mouse button
+            if (Input.GetButtonDown("Fire2")) //Right mouse button
             {
-                currentDashTime = 0;
-                powerUpCount=-1;
-            }
+                currentDashTime = 0;  }
                 
             if(currentDashTime < maxDashTime)
             {
                 animator.SetBool("Dribble", true);
                 moveDirection = transform.forward * dashDistance;
                 currentDashTime += dashStoppingSpeed;}
-            else
-            {
+            else{
                 moveDirection = Vector3.zero;
                  //animator.SetBool("Dribble", false);
-            }  
-            _controller.Move(moveDirection * Time.deltaTime * dashSpeed);
+            }  _controller.Move(moveDirection * Time.deltaTime * dashSpeed);
+
             _playerVelocity.y += _gravityValue * Time.deltaTime;
             _controller.Move(_playerVelocity * Time.deltaTime);
-
-           
         }
     }
 
@@ -169,25 +153,5 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
             // Deserialize the kicking player
             kickingPlayer = (Photon.Realtime.Player)stream.ReceiveNext();
         }
-    }
-
-    private float GetPlayerSpeed()
-    {
-        if (isPoweredUp)
-        {
-            return _playerSpeed * 2f;
-
-        }
-        else
-        {
-            return _playerSpeed;
-        }
-    }
-
-    public void ActivatePowerUp()
-    {
-        isPoweredUp = true;
-        powerUpTimer = powerUpDuration;
-        _playerSpeed = _basePlayerSpeed * 2f;
     }
 }

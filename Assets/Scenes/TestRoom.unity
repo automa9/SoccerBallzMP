@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1.4105517, g: 7.38313, b: 35.264484, a: 1}
+  m_IndirectSpecularColor: {r: 1.4105107, g: 7.3831224, b: 35.2643, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5124,6 +5124,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1665562174 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2157058750104020152, guid: ca4a2e81785828941aa7dd39a6f6e745,
+    type: 3}
+  m_PrefabInstance: {fileID: 803898134138494047}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1665562183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665562174}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 667a6b0c6d1d65540a6efe0333657741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDirection: {x: 0, y: 0, z: 0}
+  dashDistance: 1
+  dashStoppingSpeed: 0.1
+  dashSpeed: 10
+  _playerSpeed: 0.1
+  _rotationSpeed: 10
+  _gravityValue: -9.81
+  _jumpHeight: 1
 --- !u!1 &1696489163
 GameObject:
   m_ObjectHideFlags: 0
@@ -8289,10 +8315,20 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1713738988}
+    - target: {fileID: 7457823281080580241, guid: ca4a2e81785828941aa7dd39a6f6e745,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9194118686270444299, guid: ca4a2e81785828941aa7dd39a6f6e745,
         type: 3}
       propertyPath: dashSpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194118686270444299, guid: ca4a2e81785828941aa7dd39a6f6e745,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9194118686270444299, guid: ca4a2e81785828941aa7dd39a6f6e745,
         type: 3}
@@ -8306,7 +8342,11 @@ PrefabInstance:
     - {fileID: 2131500081103278433, guid: ca4a2e81785828941aa7dd39a6f6e745, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2157058750104020152, guid: ca4a2e81785828941aa7dd39a6f6e745,
+        type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 1665562183}
   m_SourcePrefab: {fileID: 100100000, guid: ca4a2e81785828941aa7dd39a6f6e745, type: 3}
 --- !u!1 &863613299298672429
 GameObject:

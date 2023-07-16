@@ -22,7 +22,7 @@ public class MeshTrail : MonoBehaviour
 
     float valueToAnimate;
 
-    private int powerUpCount = 3;
+    public int powerUpCount = 3;
 
     // Update is called once per frame
     void Update()

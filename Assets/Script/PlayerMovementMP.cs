@@ -41,7 +41,6 @@ public class PlayerMovementMP : MonoBehaviourPunCallbacks, IPunObservable
     public bool isPoweredUp = false;
     private float powerUpDuration = 10f;
     private float powerUpTimer = 0f;
-
     public int powerUpCount = 3;
 
     private void Start()

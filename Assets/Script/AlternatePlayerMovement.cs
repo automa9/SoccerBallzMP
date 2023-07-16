@@ -15,6 +15,7 @@ public class AlternatePlayerMovement : MonoBehaviourPunCallbacks, IPunObservable
     public float dashStoppingSpeed = 0.1f;
     public float dashSpeed = 5f;
     float currentDashTime = maxDashTime;
+    public MeshTrail meshTrail;
 
     [SerializeField]
     private float _playerSpeed = 5f;
@@ -38,6 +39,7 @@ public class AlternatePlayerMovement : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Start()
     {
+        meshTrail= GetComponent<MeshTrail>();
         view = GetComponent<PhotonView>();
         animator = GetComponent<Animator>();
         _controller = GetComponent<CharacterController>();
@@ -80,17 +82,8 @@ public class AlternatePlayerMovement : MonoBehaviourPunCallbacks, IPunObservable
                 transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, _rotationSpeed * Time.deltaTime);
             }else {animator.SetBool("Dribble", false);}
 
-            //dash
-            if (_groundedPlayer && Input.GetKeyDown(KeyCode.Mouse1)){
-
-               //animator.SetBool("isJump", true);
-                //StartCoroutine(JumpAfterDelay(0.4f));
-            }else {
-                animator.SetBool("isJump", false);
-            }
-
-            //Dash
-            if (Input.GetButtonDown("Fire2")) //Right mouse button
+            //Dash------------------------------------------------
+            if (Input.GetButtonDown("Fire2") && meshTrail.powerUpCount > 0) //Right mouse button
             {
                 currentDashTime = 0;  }
                 

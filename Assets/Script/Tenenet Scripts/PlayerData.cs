@@ -10,12 +10,7 @@ public class PlayerData : MonoBehaviour
     public APISystem api;
     public TMP_InputField username;
 
-    void Start()
-    {
-
-    }
-
-    public void submitData(string sceneName)
+    public void submitData()
     {
         if(string.IsNullOrEmpty(username.text))
         {
@@ -26,7 +21,7 @@ public class PlayerData : MonoBehaviour
             PlayerPrefs.SetString("username", username.text);
             string name = username.text;
             FindObjectOfType<APISystem>().Register(name, name, name, name); //change the value if your alias, fname, lname and id are different
-            SceneManager.LoadScene(sceneName);
+           // SceneManager.LoadScene(sceneName);
         }
     }
 }
